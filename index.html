@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Biological τ — Metabolism, Breath, and Neural Flux</title>
+  <meta name="description" content="Extending the τ framework to human metabolism and brain function: how body mass leaves as CO₂/H₂O and energy, with τ-flux in neural activity and tests." />
+
+  <style>
+    :root{
+      --bg:#0b0f19;--panel:#121827;--ink:#e6e8ee;--muted:#a3acc2;
+      --accent:#7c3aed;--accent-2:#f59e0b;--rule:#2a3348;--code:#0e1422;
+      --link:#9aa8ff;--maxw:980px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#ffffff;--panel:#f6f7fb;--ink:#0f1222;--muted:#4a546e;
+        --rule:#e4e7f0;--code:#f1f3f9;--link:#2b59ff;}
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(124,58,237,.08), transparent 45%),
+        radial-gradient(1000px 700px at 110% 10%, rgba(245,158,11,.08), transparent 40%),
+        var(--bg);
+      color:var(--ink);
+      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:48px 20px 96px}
+    header{text-align:center;margin-bottom:32px}
+    .logo{
+      font-size:clamp(36px,6vw,64px);
+      font-weight:800;
+      letter-spacing:2px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      display:inline-block;
+      margin-bottom:12px;
+    }
+    h1{margin:0 0 8px;font-size:clamp(26px,4.5vw,38px);line-height:1.2}
+    .subtitle{color:var(--muted);font-size:15px}
+    .meta{margin-top:8px;color:var(--muted);font-size:14px}
+    nav{margin:26px auto;max-width:740px;text-align:left;background:var(--panel);
+      border:1px solid var(--rule);border-radius:12px;padding:16px 20px}
+    nav a{color:var(--link);text-decoration:none}
+    nav a:hover{text-decoration:underline}
+    nav ul{margin:0;padding-left:18px}
+    section{background:rgba(255,255,255,.02);border:1px solid var(--rule);
+      border-radius:16px;padding:24px 20px;margin:18px 0}
+    h2{margin:0 0 8px;font-size:clamp(20px,3.5vw,26px)}
+    h3{margin:16px 0 8px;font-size:18px}
+    p{margin:10px 0 0}
+    .equation{display:block;margin:12px 0;padding:12px 14px;background:var(--code);
+      border:1px solid var(--rule);border-radius:10px;
+      font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace;overflow:auto;white-space:nowrap}
+    .abstract{font-style:italic;color:var(--muted)}
+    .callout{padding:14px;border:1px dashed var(--rule);border-radius:12px;background:rgba(245,158,11,.08)}
+    footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+    table{width:100%;border-collapse:collapse;margin:8px 0}
+    th,td{border:1px solid var(--rule);padding:8px;vertical-align:top}
+    th{background:var(--panel);text-align:left}
+    code{background:var(--code);padding:1px 4px;border-radius:4px}
+    @media print{body{background:#fff}nav,section{break-inside:avoid}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Bio τ</div>
+      <h1>Biological τ — Metabolism, Breath, and Neural Flux</h1>
+      <div class="subtitle">How body mass leaves as CO₂/H₂O and heat, and how τ-flux sustains the brain</div>
+      <div class="meta">Author: Tristan White • v1.1 • Updated: Mon, Sep 1, 2025, 11:42 AM EDT</div>
+      <nav aria-label="Contents">
+        <ul>
+          <li><a href="#abstract">Abstract</a></li>
+          <li><a href="#introduction">1. Introduction</a></li>
+          <li><a href="#stoich">2. Metabolic Stoichiometry & Mass Balance</a></li>
+          <li><a href="#tau">3. τ-Formulation for Metabolism</a></li>
+          <li><a href="#energy">4. Energy & Entropy Accounting</a></li>
+          <li><a href="#neural">5. Neural τ-Flux</a></li>
+          <li><a href="#benchmarks">6. Quantitative Benchmarks & Examples</a></li>
+          <li><a href="#implications">7. Implications</a></li>
+          <li><a href="#conclusion">8. Conclusion</a></li>
+          <li><a href="#references">References</a></li>
+          <li><a href="#appendix-a">Appendix A — τ-First Biological Dictionary</a></li>
+          <li><a href="#appendix-b">Appendix B — Test Protocols (Checklist)</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="abstract"><h2>Abstract</h2>
+        <p class="abstract">
+          We extend the τ framework (τ ≡ E/c³ ≡ m/c) to human metabolism and brain function. Oxidation of macronutrients converts bodily mass into CO₂ and H₂O while releasing energy as work and heat. The brain, though only ~2% of body weight, consumes ~20% of resting energy, making it the densest τ-flux organ. We provide mass/energy accounting, neural τ-flux definitions, and protocols for measuring τ in vivo via gas exchange, calorimetry, and neuroimaging.
+        </p>
+      </section>
+
+      <section id="introduction"><h2>1. Introduction</h2>
+        <p>
+          “Weight loss” is the outward sign of metabolic τ-exchange: body stores oxidized, O₂ inhaled, CO₂ and H₂O exhaled, and energy dissipated. The brain is the most τ-demanding organ, where stable τ-flux is essential for cognition and consciousness.
+        </p>
+      </section>
+
+      <section id="stoich"><h2>2. Metabolic Stoichiometry & Mass Balance</h2>
+        <p>Representative fat oxidation (average triacylglycerol):</p>
+        <div class="equation">C₅₅H₁₀₄O₆ + 78 O₂ → 55 CO₂ + 52 H₂O + energy</div>
+        <p>
+          Mass in (substrate + O₂) equals mass out (CO₂ + H₂O). The “lost weight” leaves the body as gas and vapor.
+        </p>
+      </section>
+
+      <section id="tau"><h2>3. τ-Formulation for Metabolism</h2>
+        <div class="equation">τ = m/c = E/c³</div>
+        <p>
+          Every gram of CO₂ or H₂O expired corresponds to a τ efflux. Gas-exchange measurements (VO₂, VCO₂) thus directly quantify τ-flow.
+        </p>
+      </section>
+
+      <section id="energy"><h2>4. Energy & Entropy Accounting</h2>
+        <p>
+          Energy expenditure estimated from VO₂, VCO₂ maps into τ via E = c³τ. The balance <code>\dot τ_E ≈ \dot τ_m</code> (energy vs. mass flux) holds if storage and mechanical work are included.
+        </p>
+      </section>
+
+      <section id="neural"><h2>5. Neural τ-Flux</h2>
+        <p>
+          The brain, ~2% of body mass, accounts for ~20% of resting O₂ consumption and CO₂ output. In τ terms:
+        </p>
+        <div class="equation">\dot τ_brain,in = \dot m_{O₂}/c,  \dot τ_brain,out = \dot m_{CO₂}/c</div>
+        <p>
+          Cognition and neural activity are sustained by continuous τ-throughput. Any mismatch (hypoxia or hypercapnia) destabilizes τ-balance, impairing neural firing and consciousness.
+        </p>
+        <p>
+          Measurement proxies: fMRI BOLD (O₂ extraction), near-infrared spectroscopy, PET with glucose tracers, EEG–metabolism coupling. Each provides a projection of neural τ-flux.
+        </p>
+      </section>
+
+      <section id="benchmarks"><h2>6. Quantitative Benchmarks & Examples</h2>
+        <ul>
+          <li>Per breath: ~30 mg CO₂ → ~3×10⁻⁵ kg/c τ exported.</li>
+          <li>Brain: ~50 mL O₂/min at rest → ~70 mg/s O₂ → τ-in ≈ 7×10⁻⁵ kg/s ÷ c.</li>
+          <li>Brain τ-flux tightly couples to cognition: increases ~20–30% during intense mental activity.</li>
+        </ul>
+      </section>
+
+      <section id="implications"><h2>7. Implications</h2>
+        <ul>
+          <li>Neural τ-flux links metabolism directly to thought and perception.</li>
+          <li>Breathing irregularities (sleep apnea, hyperventilation) map to τ-instability, with cognitive symptoms.</li>
+          <li>Long-term: τ analysis could unify physiological and cognitive sciences under energetic–temporal balance.</li>
+        </ul>
+      </section>
+
+      <section id="conclusion"><h2>8. Conclusion</h2>
+        <p>
+          Breathing sustains life by exporting τ in gases and importing τ in O₂. The brain is the most τ-dependent organ: every thought is a micro τ-exchange, measured as CO₂ in exhaled breath and O₂ in consumed air. Understanding the brain in τ units clarifies how metabolism underpins consciousness.
+        </p>
+      </section>
+
+      <section id="references"><h2>References</h2>
+        <ol>
+          <li>Astrand & Rodahl, <em>Textbook of Work Physiology</em>.</li>
+          <li>Raichle, M. (2015). <em>The Brain’s Energy Budget</em>.</li>
+          <li>Weir, J. B. de V. (1949). <em>New methods for calculating metabolic rate with special reference to protein metabolism</em>.</li>
+        </ol>
+      </section>
+
+      <section id="appendix-a"><h2>Appendix A — τ-First Biological Dictionary</h2>
+        <div class="equation">τ ≡ E/c³ ≡ m/c</div>
+        <div class="equation">Δτ_body = −(Δm_CO₂ + Δm_H₂O + …)/c</div>
+        <div class="equation">\dot τ_brain,in = \dot m_{O₂}/c, \dot τ_brain,out = \dot m_{CO₂}/c</div>
+        <div class="equation">Consistency: Δτ_body ≈ ΔE_body/c³</div>
+      </section>
+
+      <section id="appendix-b"><h2>Appendix B — Test Protocols (Checklist)</h2>
+        <h3>B.1 Human Metabolism</h3>
+        <table>
+          <tr><th>Test</th><th>Observable</th><th>Procedure</th><th>Outcome</th></tr>
+          <tr>
+            <td>Indirect calorimetry</td>
+            <td>VO₂, VCO₂</td>
+            <td>Metabolic cart, steady-state rest/exercise</td>
+            <td>Compute τ-flux; compare mass vs. energy accounting</td>
+          </tr>
+          <tr>
+            <td>CO₂ capture</td>
+            <td>ṁ_CO₂</td>
+            <td>Soda lime or sieve traps</td>
+            <td>Gravimetric τ efflux check</td>
+          </tr>
+        </table>
+
+        <h3>B.2 Neural τ-Flux</h3>
+        <table>
+          <tr><th>Test</th><th>Observable</th><th>Procedure</th><th>Outcome</th></tr>
+          <tr>
+            <td>fMRI BOLD</td>
+            <td>O₂ extraction</td>
+            <td>Task-based imaging</td>
+            <td>Neural τ-in map</td>
+          </tr>
+          <tr>
+            <td>EEG–metabolism coupling</td>
+            <td>Oscillatory activity vs VO₂/VCO₂</td>
+            <td>Simultaneous EEG and calorimetry</td>
+            <td>Neural τ-efflux–activity correlation</td>
+          </tr>
+          <tr>
+            <td>Near-infrared spectroscopy</td>
+            <td>Oxy/deoxy hemoglobin</td>
+            <td>Bedside monitoring</td>
+            <td>τ-balance shifts during cognition</td>
+          </tr>
+        </table>
+
+        <h3>B.3 Reporting</h3>
+        <ul>
+          <li>Always state τ-flux in both <code>m/c</code> and <code>E/c³</code>.</li>
+          <li>Compare brain τ-demand with systemic τ-flux.</li>
+          <li>Highlight deviations (hypoxia, hypercapnia) as τ-instability markers.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>© <span id="y"></span> Tristan White • Creative Commons BY-NC-SA 4.0</footer>
+  </div>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
